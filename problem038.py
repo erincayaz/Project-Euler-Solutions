@@ -1,30 +1,16 @@
-def isPanditigal(n):
-  s = str(n)
-  hs = {-1}
-  for i in range(len(s)):
-    if s[i] in hs:
-      return False
-    
-    if s[i] != "0":
-      hs.add(s[i])
+def is_pandigital(s):
+  return len(s) == 9 and set(s) == set('123456789')
 
-  return len(hs) == 10
+max_number = 0
+for i in range(1, 10000):
+    concatenated = ''
+    j = 1
+    while len(concatenated) < 9:
+        concatenated += str(i * j)
+        j += 1
+    if is_pandigital(concatenated):
+        num = int(concatenated)
+        if num > max_number:
+            max_number = num
 
-maxNumber = 1
-maxFormedNumber = 1
-i = 2
-while i < 9999:
-  num = ""
-  for j in range(1, 9):
-    if len(num) >= 9:
-      break
-
-    num += str(i * j)
-
-  if len(num) == 9 and isPanditigal(num):
-    maxNumber = i
-    maxFormedNumber = num
-
-  i += 1
-
-print("Max pandigital number is:", maxFormedNumber)
+print("Max pandigital number is:", max_number)
